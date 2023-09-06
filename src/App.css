@@ -4,6 +4,6 @@
 
 @layer base{
   html{
-    @apply bg-zinc-900;
+    @apply bg-zinc-900 text-gray-300;
   }
 }
