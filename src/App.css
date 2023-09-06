@@ -7,3 +7,11 @@
     @apply bg-zinc-900 text-gray-300;
   }
 }
+
+::-webkit-scrollbar{
+  width: 5px;
+}
+::-webkit-scrollbar-thumb{
+  background-color: aliceblue;
+}
+

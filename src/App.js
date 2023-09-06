@@ -27,8 +27,10 @@ function App() {
     const id = todo.length+1
     const newItem = {id:id,checked:false,item:key}
     const listItem = [...todo,newItem]
+    
     localStorage.setItem("todoList",JSON.stringify(listItem))
-    setTodo(listItem)    
+    setTodo(listItem) 
+    setNewTodo("")   
   }
 
   return (
