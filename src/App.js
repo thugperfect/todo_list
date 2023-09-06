@@ -29,11 +29,13 @@ function App() {
       (k.id === key)? {...k,checked:!k.checked}:k
     )
     setTodo(addCheck)
+    localStorage.setItem("todoList",JSON.stringify(addCheck))
    
   }
   const deleteTodo = (key) =>{
     const changeList = todo.filter(k=> k.id!==key)
     setTodo(changeList)
+    localStorage.setItem("todoList",JSON.stringify(changeList))
     
   }
 
