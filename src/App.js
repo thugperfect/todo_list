@@ -24,6 +24,7 @@ function App() {
   const [newtodo,setNewTodo] = useState("")
   
   const addItem = (key)=>{
+    if(!key) return
     const id = todo.length+1
     const newItem = {id:id,checked:false,item:key}
     const listItem = [...todo,newItem]
