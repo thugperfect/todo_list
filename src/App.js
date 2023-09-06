@@ -2,12 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './Components/Header';
 import Body from './Components/Body';
+import { useState } from 'react';
 
 function App() {
-  const todo = [
+  const [todo,setTodo] = useState([
     {
       id:1,
-      checked:false,
+      checked:true,
       item:"Complete ToDO APP"
     },{
       id:2,
@@ -22,12 +23,28 @@ function App() {
       checked:false,
       item:"Complete React YT video"
     }
-  ]
+  ])
+  const handleChecked = (key)=>{
+    const addCheck = todo.map(k=>
+      (k.id === key)? {...k,checked:!k.checked}:k
+    )
+    setTodo(addCheck)
+   
+  }
+  const deleteTodo = (key) =>{
+    const changeList = todo.filter(k=> k.id!==key)
+    setTodo(changeList)
+    
+  }
 
   return (
     <div className="container mx-auto w-4/5  min-h-[100vh]  bg-black  outline-1 outline-slate-600">
       <Header/>
-      <Body/>
+      <Body
+      todo={todo}
+      deleteTodo={deleteTodo}
+      handleChecked={handleChecked}
+      />
     </div>
   );
 }
