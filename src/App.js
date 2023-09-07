@@ -48,14 +48,16 @@ function App() {
       setTodo(data)
     })
   }
-  // const deleteData = async (i) =>{
-  //   await axios.delete('http://localhost:5000/api',{
-  //     i 
-  //   }).then(r=>{
-  //     console.log(r.data)
-  //     localStorage.setItem('todoList',JSON.stringify(r.data.dt))
-  //   })
-  // }
+ 
+  const deleteData = async (_id)=>{
+    await axios.delete('http://localhost:5000/api',{
+      _id
+    }).then(r=>{
+      const data = r.data.dt
+      console.log("deleting "+_id);
+      setTodo(data)
+    })
+  }
   getData()
 
   useEffect(()=>{
@@ -75,7 +77,7 @@ function App() {
       <Body
      
      todo={filteredTodo}
-      // deleteTodo={deleteTodo}
+      deleteTodo={deleteData}
       handleChecked={changeChecked}
       />
     </div>
