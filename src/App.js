@@ -31,10 +31,10 @@ function App() {
     console.log(err);
   })}
 
-  const postData = async () =>{
+  const postData = async (k) =>{
     await axios.post('http://localhost:5000/api',{
       checked:false,
-      item:"true"
+      item:k
     })
   }
   // const deleteData = async (i) =>{
@@ -58,7 +58,7 @@ function App() {
       <Header/>
       <Setinput
       setNewTodo={setNewTodo}
-      addItem={addItem}
+      addItem={postData}
       newtodo={newtodo}
       />
       <Search
@@ -66,9 +66,9 @@ function App() {
       />
       <Body
      
-      todo={filteredTodo}
-      deleteTodo={deleteTodo}
-      handleChecked={handleChecked}
+     todo={filteredTodo}
+      // deleteTodo={deleteTodo}
+      // handleChecked={handleChecked}
       />
     </div>
   );
