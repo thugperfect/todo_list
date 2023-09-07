@@ -9,33 +9,11 @@ import axios from 'axios';
 
 
 function App() {
-  const [todo,setTodo] = useState(JSON.parse(localStorage.getItem('todoList')) || [])
-  const handleChecked = (key)=>{
-    const addCheck = todo.map(k=>
-      (k.id === key)? {...k,checked:!k.checked}:k
-    )
-    setTodo(addCheck)
-    localStorage.setItem("todoList",JSON.stringify(addCheck))
-   
-  }
-  const deleteTodo = (key) =>{
-    const changeList = todo.filter(k=> k.id!==key)
-    setTodo(changeList)
-    localStorage.setItem("todoList",JSON.stringify(changeList))
-    
-  }
+  const [todo,setTodo] = useState([])
+ 
   const [newtodo,setNewTodo] = useState("")
   
-  const addItem = (key)=>{
-    if(!key) return
-    const id = todo.length+1
-    const newItem = {id:id,checked:false,item:key}
-    const listItem = [...todo,newItem]
-    
-    localStorage.setItem("todoList",JSON.stringify(listItem))
-    setTodo(listItem) 
-    setNewTodo("")   
-  }
+ 
   const [search,setSearch] = useState('')
   const filteredTodo = search
   ? todo.filter(ke => (ke.item.toLowerCase()).includes(search.toLowerCase()))
@@ -43,28 +21,36 @@ function App() {
 
 
 
-  const getData =async () =>{await axios.get('http://localhost:5000/api').then(r=>{
+  const getData =async () =>{
+    
+    await axios.get('http://localhost:5000/api').then(r=>{
     console.log(r.data);
     const d = r.data.dt
-    localStorage.setItem("todoList",JSON.stringify(d))
+    setTodo(d)
   }).catch(err=>{
     console.log(err);
   })}
 
-  const deleteData = async (i) =>{
-    await axios.delete('http://localhost:5000/api',{
-      i 
-    }).then(r=>{
-      console.log(r.data)
-      localStorage.setItem('todoList',JSON.stringify(r.data.dt))
+  const postData = async () =>{
+    await axios.post('http://localhost:5000/api',{
+      checked:false,
+      item:"true"
     })
   }
+  // const deleteData = async (i) =>{
+  //   await axios.delete('http://localhost:5000/api',{
+  //     i 
+  //   }).then(r=>{
+  //     console.log(r.data)
+  //     localStorage.setItem('todoList',JSON.stringify(r.data.dt))
+  //   })
+  // }
 
 
   useEffect(()=>{
 
     getData()
-    deleteData()
+    // deleteData()
  
   },[])
   return (
