@@ -29,7 +29,9 @@ const controller = {
         res.json({dt})
     },
     delete: async (req,res)=>{
-       try{ const {_id} = req.body
+       try{ 
+        const {_id} = req.body
+        console.log(req.body);
         const deleteItem = await Data.findByIdAndDelete(_id)
 
         if(!deleteItem) return res.json({msg:"Element not found"})

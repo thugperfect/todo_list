@@ -50,14 +50,13 @@ function App() {
   }
  
   const deleteData = async (_id)=>{
-    await axios.delete('http://localhost:5000/api',{
-      _id
-    }).then(r=>{
-      const data = r.data.dt
-      console.log("deleting "+_id);
-      setTodo(data)
+    await axios.delete('http://localhost:5000/api',{_id:_id}).then(r=>{
+      const da = r.data.dt
+      setTodo(da)
     })
+   console.log("deleting")
   }
+
   getData()
 
   useEffect(()=>{
