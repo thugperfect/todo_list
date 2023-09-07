@@ -39,6 +39,15 @@ function App() {
     })
     setNewTodo('')
   }
+
+  const changeChecked = async (_id,checked) =>{
+    await axios.put('http://localhost:5000/api',{
+    _id,checked
+    }).then(r=>{
+      const data = r.data.dt
+      setTodo(data)
+    })
+  }
   // const deleteData = async (i) =>{
   //   await axios.delete('http://localhost:5000/api',{
   //     i 
@@ -67,7 +76,7 @@ function App() {
      
      todo={filteredTodo}
       // deleteTodo={deleteTodo}
-      // handleChecked={handleChecked}
+      handleChecked={changeChecked}
       />
     </div>
   );

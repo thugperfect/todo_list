@@ -4,12 +4,11 @@ const controller = {
     post: async (req,res) =>{
 
      try{   
-        const {id,checked,item} = req.body
+        const {checked,item} = req.body
 
         console.log(req.body);
 
         const data = new Data({
-            id,
             checked,
             item
         })
@@ -37,6 +36,20 @@ const controller = {
 
         res.json({msg:"Element deleted successfully"})
         }
+        catch (err){
+            console.log(err);
+        }
+    },
+    update:async (req,res) =>{
+     try{   const {_id,checked} = req.body
+
+        const updateData = await Data.findById(_id)
+        if(!updateData) return res.json({msg:"no element found"})
+
+        updateData.checked = checked
+
+        await updateData.save()
+        res.json({msg:"updated checked"})}
         catch (err){
             console.log(err);
         }
