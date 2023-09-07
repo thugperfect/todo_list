@@ -14,7 +14,11 @@ const controller = {
             item
         })
         await data.save()
-        res.json({msg:'send to mongo'})
+        res.json({msg:'send to mongo',
+            data:{
+        ...data._doc
+    }
+    })
         
     }catch (err){
         res.json({err:err})
@@ -26,9 +30,13 @@ const controller = {
         res.json({dt})
     },
     delete: async (req,res)=>{
-       try{ const {id} = req.body
-        console.log(id)
-    }
+       try{ const {_id} = req.body
+        const deleteItem = await Data.findByIdAndDelete(_id)
+
+        if(!deleteItem) return res.json({msg:"Element not found"})
+
+        res.json({msg:"Element deleted successfully"})
+        }
         catch (err){
             console.log(err);
         }
