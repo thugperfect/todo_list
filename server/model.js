@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const dataModel =new  mongoose.Schema({
+const dataModel = new  mongoose.Schema({
     id:{
         required:true
     },
@@ -11,4 +11,8 @@ const dataModel =new  mongoose.Schema({
         required:true
     }
 
+},{
+    timestamps:true
 })
+
+module.exports = mongoose.model('Data',dataModel)
