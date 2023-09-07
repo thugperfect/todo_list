@@ -38,6 +38,7 @@ function App() {
   const filteredTodo = search
   ? todo.filter(ke => (ke.item.toLowerCase()).includes(search.toLowerCase()))
   : todo
+
   return (
     <div className="container mx-auto w-4/5  min-h-[100vh]  bg-black  outline-1 outline-slate-600">
       <Header/>
@@ -51,7 +52,7 @@ function App() {
       />
       <Body
      
-      todo={filteredTodo?.length>0?filteredTodo:"no toDo's marked"}
+      todo={filteredTodo}
       deleteTodo={deleteTodo}
       handleChecked={handleChecked}
       />
