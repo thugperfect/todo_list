@@ -20,6 +20,10 @@ const controller = {
         res.json({err:err})
     }
 
+    },
+    get: async(req,res) =>{
+        const dt =await Data.find({}) 
+        res.json({dt})
     }
 
 }
