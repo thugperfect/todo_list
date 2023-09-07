@@ -24,6 +24,14 @@ const controller = {
     get: async(req,res) =>{
         const dt =await Data.find({}) 
         res.json({dt})
+    },
+    delete: async (req,res)=>{
+       try{ const {id} = req.body
+        console.log(id)
+    }
+        catch (err){
+            console.log(err);
+        }
     }
 
 }

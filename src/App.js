@@ -40,14 +40,32 @@ function App() {
   const filteredTodo = search
   ? todo.filter(ke => (ke.item.toLowerCase()).includes(search.toLowerCase()))
   : todo
-  useEffect(()=>{
-  axios.get('http://localhost:5000/api').then(r=>{
+
+
+
+  const getData =async () =>{await axios.get('http://localhost:5000/api').then(r=>{
     console.log(r.data);
     const d = r.data.dt
     localStorage.setItem("todoList",JSON.stringify(d))
   }).catch(err=>{
     console.log(err);
-  })
+  })}
+
+  const deleteData = async (i) =>{
+    await axios.delete('http://localhost:5000/api',{
+      i 
+    }).then(r=>{
+      console.log(r.data)
+      localStorage.setItem('todoList',JSON.stringify(r.data.dt))
+    })
+  }
+
+
+  useEffect(()=>{
+
+    getData()
+    deleteData()
+ 
   },[])
   return (
     <div className="container mx-auto w-4/5  min-h-[100vh]  bg-black  outline-1 outline-slate-600">
