@@ -3,11 +3,15 @@ const express = require('express')
 const app = express()
 const cors =require('cors')
 
-const router = require('./router')
+
 app.use(cors())
 
+app.use(express.json())
 
-app.use('/',router)
+app.use('/',require('./router'))
+app.get('/api',(req,res)=>{
+    res.send("fu")
+})
 const mongoose  = require('mongoose')
 
 const db = process.env.MONGO_URL
