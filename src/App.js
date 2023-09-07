@@ -4,6 +4,7 @@ import Header from './Components/Header';
 import Body from './Components/Body';
 import { useState } from 'react';
 import Setinput from './Components/Setinput';
+import Search from './Components/Search';
 
 function App() {
   const [todo,setTodo] = useState(JSON.parse(localStorage.getItem('todoList')) || [])
@@ -33,7 +34,12 @@ function App() {
     setTodo(listItem) 
     setNewTodo("")   
   }
+  const [search,setSearch] = useState('')
 
+  const findSearch = () =>{
+    console.log(search);
+  }
+  findSearch()
   return (
     <div className="container mx-auto w-4/5  min-h-[100vh]  bg-black  outline-1 outline-slate-600">
       <Header/>
@@ -41,6 +47,9 @@ function App() {
       setNewTodo={setNewTodo}
       addItem={addItem}
       newtodo={newtodo}
+      />
+      <Search
+      setSearch={setSearch}
       />
       <Body
       todo={todo}
