@@ -1,9 +1,11 @@
 const mongoose = require('mongoose')
 const dataModel = new  mongoose.Schema({
     id:{
+        type:Number,
         required:true
     },
     checked:{
+        type:Boolean,
         required:true
     },
     item:{
@@ -11,8 +13,6 @@ const dataModel = new  mongoose.Schema({
         required:true
     }
 
-},{
-    timestamps:true
 })
 
 module.exports = mongoose.model('Data',dataModel)

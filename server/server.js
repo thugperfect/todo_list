@@ -17,8 +17,11 @@ mongoose.connection.on('error',(err)=>{
 mongoose.connection.once('open',()=>{
     console.log('MONGODB ==> CONNECTED');
 })
+
 require('./model')
-const port = process.env.PORT || 5000
+
+
+const port = process.env.PORT || 5001
 app.listen(port,()=>{
     console.log(`Server@${port}`);
 })
