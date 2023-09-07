@@ -11,8 +11,7 @@ const Body = ({todo,deleteTodo,handleChecked}) => {
                    <div className='w-full'>{k.item}</div>
                   <div onClick={()=>deleteTodo(k.id)}><BsTrash3Fill /></div> 
                 </div>
-            )
-            ):<div className='flex justify-center items-center h-[200px]'>Nothing Found</div>
+            )):<div className='flex justify-center items-center h-[200px]'>Nothing Found</div>
             }</div>
     </div>
   )
