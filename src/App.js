@@ -24,7 +24,6 @@ function App() {
   const getData =async () =>{
     
     await axios.get('http://localhost:5000/api').then(r=>{
-    console.log(r.data);
     const d = r.data.dt
     setTodo(d)
   }).catch(err=>{
@@ -35,7 +34,10 @@ function App() {
     await axios.post('http://localhost:5000/api',{
       checked:false,
       item:k
+
+      
     })
+    setNewTodo('')
   }
   // const deleteData = async (i) =>{
   //   await axios.delete('http://localhost:5000/api',{
@@ -45,12 +47,9 @@ function App() {
   //     localStorage.setItem('todoList',JSON.stringify(r.data.dt))
   //   })
   // }
-
+  getData()
 
   useEffect(()=>{
-
-    getData()
-    // deleteData()
  
   },[])
   return (

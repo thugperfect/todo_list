@@ -1,10 +1,6 @@
 import React from 'react'
 import { BsTrash3Fill } from 'react-icons/bs'
-const Body = ({todo,deleteTodo,handleChecked}) => {
-  const dat = todo.map(e=>{
-    console.log(e.createdAt);
-  })
- 
+const Body = ({todo,deleteTodo,handleChecked}) => { 
   return (
     <div  className='container mx-auto w-4/5 h-full'>
         <div>{
