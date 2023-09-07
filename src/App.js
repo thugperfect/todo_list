@@ -5,6 +5,8 @@ import Body from './Components/Body';
 import { useState,useEffect } from 'react';
 import Setinput from './Components/Setinput';
 import Search from './Components/Search';
+import axios from 'axios';
+
 
 function App() {
   const [todo,setTodo] = useState(JSON.parse(localStorage.getItem('todoList')) || [])
@@ -38,7 +40,15 @@ function App() {
   const filteredTodo = search
   ? todo.filter(ke => (ke.item.toLowerCase()).includes(search.toLowerCase()))
   : todo
-
+  useEffect(()=>{
+  axios.get('http://localhost:5000/api').then(r=>{
+    console.log(r.data);
+    const d = r.data.dt
+    localStorage.setItem("todoList",JSON.stringify(d))
+  }).catch(err=>{
+    console.log(err);
+  })
+  },[])
   return (
     <div className="container mx-auto w-4/5  min-h-[100vh]  bg-black  outline-1 outline-slate-600">
       <Header/>
