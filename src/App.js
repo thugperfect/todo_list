@@ -44,24 +44,29 @@ function App() {
     await axios.put('http://localhost:5000/api',{
     _id,checked
     }).then(r=>{
-      const data = r.data.dt
-      setTodo(data)
+      const dat = r.data.dt
+      setTodo(dat)
+    
     })
   }
  
   const deleteData = async (_id)=>{
-    await axios.delete('http://localhost:5000/api',{_id:_id}).then(r=>{
-      const da = r.data.dt
-      setTodo(da)
+    await axios.delete('http://localhost:5000/api',{
+      params:{_id:_id}})
+    .then(r=>{
+      const datee = r.data.dt
+      setTodo(datee)
+    }).catch(err=>{
+      console.log(err);
     })
-   console.log("deleting")
+  
   }
 
-  getData()
+  
 
   useEffect(()=>{
- 
-  },[])
+    getData()
+  },[todo])
   return (
     <div className="container mx-auto w-4/5  min-h-[100vh]  bg-black  outline-1 outline-slate-600">
       <Header/>
@@ -74,9 +79,9 @@ function App() {
       setSearch={setSearch}
       />
       <Body
-     
+     deleteData={deleteData}
      todo={filteredTodo}
-      deleteTodo={deleteData}
+      
       handleChecked={changeChecked}
       />
     </div>

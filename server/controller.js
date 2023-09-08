@@ -30,8 +30,8 @@ const controller = {
     },
     delete: async (req,res)=>{
        try{ 
-        const {_id} = req.body
-        console.log(req.body);
+        const { _id } = req.query
+        console.log(req.query);
         const deleteItem = await Data.findByIdAndDelete(_id)
 
         if(!deleteItem) return res.json({msg:"Element not found"})
@@ -44,7 +44,7 @@ const controller = {
     },
     update:async (req,res) =>{
      try{   const {_id,checked} = req.body
-
+        console.log(req.body);
         const updateData = await Data.findById(_id)
         if(!updateData) return res.json({msg:"no element found"})
 
